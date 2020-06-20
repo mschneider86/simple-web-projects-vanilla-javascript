@@ -23,6 +23,23 @@ function isValidEmail(email) {
   return re.test(String(email).toLowerCase());
 }
 
+// Check input length
+function checkLength(input, min, max) {
+  if (input.value.length < min) {
+    showError(
+      input,
+      `${getFieldName(input)} must have at least ${min} characters`
+    );
+  } else if (input.value.length > max) {
+    showError(
+      input,
+      `${getFieldName(input)} must have less than ${max} characters`
+    );
+  } else {
+    showSuccess(input);
+  }
+}
+
 // Check required fields
 function checkRequired(inputArr) {
   inputArr.forEach((input) => {
@@ -44,4 +61,6 @@ form.addEventListener('submit', (e) => {
   e.preventDefault();
 
   checkRequired([username, email, password, password2]);
+  checkLength(username, 3, 15);
+  checkLength(password, 6, 25);
 });
