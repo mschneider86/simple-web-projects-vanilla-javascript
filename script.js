@@ -25,7 +25,7 @@ function isValidEmail(email) {
 
 // Check required fields
 function checkRequired(inputArr) {
-  inputArr.forEach(function (input) {
+  inputArr.forEach((input) => {
     if (input.value.trim() === '') {
       showError(input, `${getFieldName(input)} is required`);
     } else {
@@ -40,7 +40,7 @@ function getFieldName(input) {
 }
 
 //Event listeners
-form.addEventListener('submit', function (e) {
+form.addEventListener('submit', (e) => {
   e.preventDefault();
 
   checkRequired([username, email, password, password2]);
