@@ -6,7 +6,11 @@ const timestamp = document.getElementById('timestamp');
 
 // Play & pause video
 function toggleVideoStatus() {
-  return true;
+  if (video.paused) {
+    video.play();
+  } else {
+    video.pause();
+  }
 }
 
 // Update play/pause icon
