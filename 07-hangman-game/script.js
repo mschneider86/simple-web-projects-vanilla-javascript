@@ -40,4 +40,40 @@ function displayWord() {
   }
 }
 
+// Update the wrong letters
+function updateWrongLettersEl() {
+  console.log('Update wrong');
+}
+
+// Show notification
+function showNotification() {}
+
+// Keydown letter press
+window.addEventListener('keydown', (e) => {
+  // Checks if key pressed is a letter
+  if (e.keyCode >= 65 && e.keyCode <= 90) {
+    const letter = e.key;
+
+    // Checks if the selectedWord contains the pressed letter
+    if (selectedWord.includes(letter)) {
+      // Checks if the letter was already pressed
+      if (!correctLetters.includes(letter)) {
+        correctLetters.push(letter);
+
+        displayWord();
+      } else {
+        showNotification();
+      }
+    } else {
+      if (!wrongLetters.includes(letter)) {
+        wrongLetters.push(letter);
+
+        updateWrongLettersEl();
+      } else {
+        showNotification();
+      }
+    }
+  }
+});
+
 displayWord();
