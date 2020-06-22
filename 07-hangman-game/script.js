@@ -28,6 +28,16 @@ function displayWord() {
       )
       .join('')}
   `;
+
+  //Remove the line breaks of the wordEl
+  const innerWord = wordEl.innerText.replace(/\n/g, '');
+
+  if (innerWord === selectedWord) {
+    finalMessage.innerText = 'Congratulations! You won! 😃';
+
+    // Change the style of the popup in order to show it on screen
+    popup.style.display = 'flex';
+  }
 }
 
 displayWord();
