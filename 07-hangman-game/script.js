@@ -12,7 +12,7 @@ const figureParts = document.querySelectorAll('.figure-part');
 
 const words = ['application', 'programming', 'interface', 'wizard'];
 
-let selectedWord = words[Math.floor(Math.random() * words.length)];
+let selectedWord = generateWord();
 
 const correctLetters = [];
 const wrongLetters = [];
@@ -81,6 +81,10 @@ function showNotification() {
   }, 2000);
 }
 
+function generateWord() {
+  return words[Math.floor(Math.random() * words.length)];
+}
+
 // Keydown letter press
 window.addEventListener('keydown', (e) => {
   // Checks if key pressed is a letter
@@ -115,7 +119,7 @@ playAgainBtn.addEventListener('click', () => {
   correctLetters.splice(0);
   wrongLetters.splice(0);
 
-  selectedWord = words[Math.floor(Math.random() * words.length)];
+  selectedWord = generateWord();
 
   displayWord();
 
