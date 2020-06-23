@@ -46,13 +46,19 @@ function updateWrongLettersEl() {
 }
 
 // Show notification
-function showNotification() {}
+function showNotification() {
+  notification.classList.add('show');
+
+  setTimeout(() => {
+    notification.classList.remove('show');
+  }, 2000);
+}
 
 // Keydown letter press
 window.addEventListener('keydown', (e) => {
   // Checks if key pressed is a letter
   if (e.keyCode >= 65 && e.keyCode <= 90) {
-    const letter = e.key;
+    const letter = e.key.toLowerCase();
 
     // Checks if the selectedWord contains the pressed letter
     if (selectedWord.includes(letter)) {
