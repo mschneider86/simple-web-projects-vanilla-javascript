@@ -10,12 +10,27 @@ const finalMessageRevealWord = document.getElementById(
 
 const figureParts = document.querySelectorAll('.figure-part');
 
-const words = ['application', 'programming', 'interface', 'wizard'];
+let words = ['application', 'programming', 'interface', 'wizard'];
 
-let selectedWord = generateWord();
+let selectedWord;
 
 const correctLetters = [];
 const wrongLetters = [];
+
+// Fetch words from external api
+function fetchWords(numberOfWords) {
+  fetch(`https://random-word-api.herokuapp.com/word?number=${numberOfWords}`)
+    .then((res) => res.json())
+    .then((data) => {
+      words = words.concat(data);
+
+      // Set selected word
+      selectedWord = generateWord();
+
+      // Only displays the first words after finished fetching them from api
+      displayWord();
+    });
+}
 
 // Show hidden word
 function displayWord() {
@@ -62,8 +77,6 @@ function updateWrongLettersEl() {
     }
   });
 
-  console.log('wrong: ' + wrongLetters.length);
-  console.log('parts: ' + figureParts.length);
   // Check if lost
   if (wrongLetters.length === figureParts.length) {
     finalMessage.innerText = 'Unfortunately you lost. 😕';
@@ -128,4 +141,4 @@ playAgainBtn.addEventListener('click', () => {
   popup.style.display = 'none';
 });
 
-displayWord();
+fetchWords(30);
