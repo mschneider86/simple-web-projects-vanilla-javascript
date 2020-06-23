@@ -42,11 +42,13 @@ function displayWord() {
 
 // Update the wrong letters
 function updateWrongLettersEl() {
+  // Display wrong letters
   wrongLettersEl.innerHTML = `
     ${wrongLetters.length > 0 ? '<p>Wrong</p>' : ''}
     ${wrongLetters.map((letter) => `<span>${letter}</span>`)}
   `;
 
+  // Display body parts
   figureParts.forEach((part, index) => {
     const errors = wrongLetters.length;
 
@@ -56,6 +58,14 @@ function updateWrongLettersEl() {
       part.style.display = 'none';
     }
   });
+
+  console.log('wrong: ' + wrongLetters.length);
+  console.log('parts: ' + figureParts.length);
+  // Check if lost
+  if (wrongLetters.length === figureParts.length) {
+    finalMessage.innerText = 'Unfortunately you lost. 😕';
+    popup.style.display = 'flex';
+  }
 }
 
 // Show notification
