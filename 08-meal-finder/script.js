@@ -5,6 +5,8 @@ const mealsEl = document.getElementById('meals');
 const resultHeading = document.getElementById('result-heading');
 const single_mealEl = document.getElementById('single-meal');
 
+const baseURL = 'https://www.themealdb.com/api/json/v1/1';
+
 // Search meal and fetch from API
 function searchMeal(e) {
   e.preventDefault();
@@ -17,7 +19,7 @@ function searchMeal(e) {
 
   // Check for empty
   if (term.trim()) {
-    fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${term}`)
+    fetch(baseURL + `/search.php?s=${term}`)
       .then((res) => res.json())
       .then((data) => {
         resultHeading.innerHTML = `<h2>Search results for '${term}':</h2>`;
@@ -46,7 +48,7 @@ function searchMeal(e) {
 
 // Fetch meal by ID
 function getMealById(mealID) {
-  fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${mealID}`)
+  fetch(baseURL + `/lookup.php?i=${mealID}`)
     .then((res) => res.json())
     .then((data) => {
       const meal = data.meals[0];
@@ -61,7 +63,7 @@ function getRandomMeal() {
   mealsEl.innerHTML = '';
   resultHeading.innerHTML = '';
 
-  fetch(`https://www.themealdb.com/api/json/v1/1/random.php`)
+  fetch(baseURL + `/random.php`)
     .then((res) => res.json())
     .then((data) => {
       const meal = data.meals[0];
