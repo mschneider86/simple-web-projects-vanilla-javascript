@@ -44,6 +44,20 @@ function searchMeal(e) {
   }
 }
 
+// Fetch meal by ID
+function getMealById(mealID) {
+  fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${mealID}`)
+    .then((res) => res.json())
+    .then((data) => {
+      const meal = data.meals[0];
+
+      addMealToDOM(meal);
+    });
+}
+
+// Add meal to DOM
+function addMealToDOM(meal) {}
+
 // Event listeners
 submit.addEventListener('submit', searchMeal);
 
@@ -60,6 +74,6 @@ mealsEl.addEventListener('click', (e) => {
   // Get the id of the clicked item
   if (mealInfo) {
     const mealID = mealInfo.getAttribute('data-mealid');
-    // get the meal using its id
+    getMealById(mealID);
   }
 });
