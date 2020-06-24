@@ -23,7 +23,7 @@ function searchMeal(e) {
         resultHeading.innerHTML = `<h2>Search results for '${term}':</h2>`;
 
         if (data.meals === null) {
-          resultHeading.innerHTML = `<p>There are no search resuls. Try again!<p>`;
+          resultHeading.innerHTML = `<p>There are no search resuls. Try again!</p>`;
         } else {
           mealsEl.innerHTML = data.meals
             .map(
@@ -56,16 +56,47 @@ function getMealById(mealID) {
 }
 
 // Add meal to DOM
-function addMealToDOM(meal) {}
+function addMealToDOM(meal) {
+  const ingredients = [];
+
+  // Loops through the meal info to extract the ingredients and its measures and format them
+  for (let i = 1; i <= 20; i++) {
+    if (meal[`strIngredient${i}`]) {
+      ingredients.push(
+        `${meal[`strIngredient${i}`]} - ${meal[`strMeasure${i}`]}`
+      );
+    } else {
+      break;
+    }
+  }
+
+  single_mealEl.innerHTML = `
+    <div class="single-meal">
+      <h1>${meal.strMeal}</h1>
+      <img src="${meal.strMealThumb}" alt="${meal.strMeal}" />
+      <div class="single-meal-info">
+        ${meal.strCategory ? `<p>${meal.strCategory}</p>` : ''}
+        ${meal.strArea ? `<p>${meal.strArea}</p>` : ''}
+      </div>
+      <div class="main">
+        <p>${meal.strInstructions}</p>
+        <h2>Ingredients</h2>
+        <ul>
+          ${ingredients.map((ing) => `<li>${ing}</li>`).join('')}
+        </ul>
+      </div>
+    </div>
+  `;
+}
 
 // Event listeners
 submit.addEventListener('submit', searchMeal);
 
 mealsEl.addEventListener('click', (e) => {
   // Search for the item with the 'meal-info' class
-  const mealInfo = e.composedPath.find((item) => {
+  const mealInfo = e.path.find((item) => {
     if (item.classList) {
-      return item.classList.conmtains('meal-info');
+      return item.classList.contains('meal-info');
     } else {
       return false;
     }
