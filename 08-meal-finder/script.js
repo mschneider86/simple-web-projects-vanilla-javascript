@@ -46,3 +46,20 @@ function searchMeal(e) {
 
 // Event listeners
 submit.addEventListener('submit', searchMeal);
+
+mealsEl.addEventListener('click', (e) => {
+  // Search for the item with the 'meal-info' class
+  const mealInfo = e.composedPath.find((item) => {
+    if (item.classList) {
+      return item.classList.conmtains('meal-info');
+    } else {
+      return false;
+    }
+  });
+
+  // Get the id of the clicked item
+  if (mealInfo) {
+    const mealID = mealInfo.getAttribute('data-mealid');
+    // get the meal using its id
+  }
+});
