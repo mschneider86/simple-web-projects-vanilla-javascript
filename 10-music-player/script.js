@@ -1,5 +1,4 @@
 const musicContainer = document.getElementById('music-container');
-
 const playBtn = document.getElementById('play');
 const prevBtn = document.getElementById('prev');
 const nextBtn = document.getElementById('next');
@@ -59,7 +58,7 @@ function prevSong() {
 
 // Next song
 function nextSong() {
-  songIndex--;
+  songIndex++;
 
   if (songIndex > songs.length - 1) {
     songIndex = 0;
@@ -74,7 +73,6 @@ function nextSong() {
 function updateProgress(e) {
   const { duration, currentTime } = e.srcElement;
   const progressPercent = (currentTime / duration) * 100;
-
   progress.style.width = `${progressPercent}%`;
 }
 
