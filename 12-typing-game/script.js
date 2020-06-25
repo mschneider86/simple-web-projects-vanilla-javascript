@@ -1,9 +1,9 @@
 const word = document.getElementById('word');
 const text = document.getElementById('text');
-const score = document.getElementById('score');
-const time = document.getElementById('time');
-const endgame = document.getElementById('end-game');
-const settings = document.getElementById('settings-btn');
+const scoreEl = document.getElementById('score');
+const timeEl = document.getElementById('time');
+const endgameEl = document.getElementById('end-game');
+const settingsBtn = document.getElementById('settings-btn');
 const settings = document.getElementById('settings');
 const settingsForm = document.getElementById('settings-form');
 const difficultySelect = document.getElementById('difficulty');
@@ -37,3 +37,11 @@ let time = 10;
 function getRandomWord() {
   return word[Math.floor(Math.random() * words.length)];
 }
+
+// Add word to DOM
+function addWordToDOM() {
+  randomWord = getRandomWord();
+  word.innerHTML = randomWord;
+}
+
+addWordToDOM();
