@@ -15,3 +15,13 @@ async function getPosts() {
 
   return data;
 }
+
+// Show posts in DOM
+async function showPosts() {
+  const posts = await getPosts();
+
+  console.log(posts);
+}
+
+// Show initial posts
+showPosts();
