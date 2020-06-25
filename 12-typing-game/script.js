@@ -36,6 +36,9 @@ let time = 10;
 // Focus on text on start
 text.focus();
 
+// Start counting down
+const timeInterval = setInterval(updateTime, 1000);
+
 // Generate random word from array
 function getRandomWord() {
   return word[Math.floor(Math.random() * words.length)];
@@ -51,6 +54,19 @@ function addWordToDOM() {
 function updateScore() {
   score++;
   scoreEl.innerHTML = score;
+}
+
+// Update time
+function updateTime() {
+  time--;
+  timeEl.innerHTML = time + 's';
+
+  if (time === 0) {
+    clearInterval(timeInterval);
+
+    // end game
+    gameOver();
+  }
 }
 
 addWordToDOM();
