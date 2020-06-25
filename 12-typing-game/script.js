@@ -9,7 +9,7 @@ const settingsForm = document.getElementById('settings-form');
 const difficultySelect = document.getElementById('difficulty');
 
 // List of words for game
-const words = [
+let words = [
   'sigh',
   'tense',
   'airplane',
@@ -53,13 +53,28 @@ const timeInterval = setInterval(updateTime, 1000);
 
 // Generate random word from array
 function getRandomWord() {
-  return word[Math.floor(Math.random() * words.length)];
+  const randomNumber = Math.floor(Math.random() * words.length);
+  return words[randomNumber];
+}
+
+function init() {
+  fetchWords(30);
 }
 
 // Add word to DOM
 function addWordToDOM() {
   randomWord = getRandomWord();
   word.innerHTML = randomWord;
+}
+
+// Fetch words from external api
+function fetchWords(numberOfWords) {
+  fetch(`https://random-word-api.herokuapp.com/word?number=${numberOfWords}`)
+    .then((res) => res.json())
+    .then((data) => {
+      words = words.concat(data);
+      addWordToDOM();
+    });
 }
 
 // Update score
@@ -92,7 +107,7 @@ function gameOver() {
   endgameEl.style.display = 'flex';
 }
 
-addWordToDOM();
+init();
 
 // Event listeners
 
