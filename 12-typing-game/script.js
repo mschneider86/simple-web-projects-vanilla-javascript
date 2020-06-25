@@ -84,6 +84,7 @@ addWordToDOM();
 
 // Event listeners
 
+// Typing
 text.addEventListener('input', (e) => {
   const insertedText = e.target.value;
   if (insertedText === randomWord) {
@@ -98,3 +99,6 @@ text.addEventListener('input', (e) => {
     updateTime();
   }
 });
+
+// Settings button click
+settingsBtn.addEventListener('click', () => settings.classList.toggle('hide'));
