@@ -84,6 +84,9 @@ function createBox(item) {
   main.appendChild(box);
 }
 
+// Init speech synth
+const message = new SpeechSynthesisUtterance();
+
 // Voices changes
 speechSynthesis.addEventListener('voiceschanged', getVoices);
 
@@ -101,6 +104,16 @@ function getVoices() {
 
     voicesSelect.appendChild(option);
   });
+}
+
+// Set text
+function setTextMessage(text) {
+  message.text = text;
+}
+
+// Speak text
+function speakText() {
+  speechSynthesis.speak(message);
 }
 
 // Toggle text box
