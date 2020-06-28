@@ -125,6 +125,13 @@ function addNewCard() {
   }
 }
 
+// Clear cards
+function clearCards() {
+  localStorage.clear();
+  cardsContainer.innerHTML = '';
+  window.location.reload();
+}
+
 // Show number of cards
 function updateCurrentText() {
   currentEl.innerText = `${currentActiveCard + 1}/${cardsEl.length}`;
@@ -174,3 +181,6 @@ hideBtn.addEventListener('click', () => addContainer.classList.remove('show'));
 
 // Add new card
 addCardBtn.addEventListener('click', addNewCard);
+
+// Clear cards button
+clearBtn.addEventListener('click', clearCards);
