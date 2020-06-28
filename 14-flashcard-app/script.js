@@ -105,6 +105,26 @@ function createCard(data, index) {
   updateCurrentText();
 }
 
+// Add new card
+function addNewCard() {
+  const question = questionEl.value;
+  const answer = answerEl.value;
+
+  if (question.trim() && answer.trim()) {
+    const newCard = { question, answer };
+
+    createCard(newCard);
+
+    questionEl.value = '';
+    answerEl.value = '';
+
+    addContainer.classList.remove('show');
+
+    cardsData.push(newCard);
+    setCardsData(cardsData);
+  }
+}
+
 // Show number of cards
 function updateCurrentText() {
   currentEl.innerText = `${currentActiveCard + 1}/${cardsEl.length}`;
@@ -114,6 +134,14 @@ function updateCurrentText() {
 function getCardsData() {
   const cards = JSON.parse(localStorage.getItem('cards'));
   return cards === null ? [] : cards;
+}
+
+// Add card to local storage
+function setCardsData(cards) {
+  localStorage.setItem('cards', JSON.stringify(cards));
+
+  //reloads the window to reflect the changes
+  window.location.reload();
 }
 
 // Handle enabling/disabling navigation buttons
@@ -143,3 +171,6 @@ showBtn.addEventListener('click', () => addContainer.classList.add('show'));
 
 // Hide add container
 hideBtn.addEventListener('click', () => addContainer.classList.remove('show'));
+
+// Add new card
+addCardBtn.addEventListener('click', addNewCard);
