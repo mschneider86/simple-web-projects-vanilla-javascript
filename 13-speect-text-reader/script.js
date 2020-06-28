@@ -75,10 +75,13 @@ function createBox(item) {
   main.appendChild(box);
 }
 
+// Voices changes
+speechSynthesis.addEventListener('voiceschanged', getVoices);
+
 // Store voices
 let voices = [];
 
-function getvoices() {
+function getVoices() {
   voices = speechSynthesis.getVoices();
 
   voices.forEach((voice) => {
@@ -100,3 +103,5 @@ toggleBtn.addEventListener('click', () =>
 closeBtn.addEventListener('click', () =>
   document.getElementById('text-box').classList.remove('show')
 );
+
+getVoices();
