@@ -37,6 +37,36 @@ function createCards() {
   cardsData.forEach((data, index) => createCard(data, index));
 }
 
+// Show next card
+function showNextCard() {
+  cardsEl[currentActiveCard].className = 'card left';
+
+  currentActiveCard = currentActiveCard + 1;
+
+  if (currentActiveCard > cardsEl.length - 1) {
+    currentActiveCard = cardsEl.length - 1;
+  }
+
+  cardsEl[currentActiveCard].className = 'card active';
+
+  updateCurrentText();
+}
+
+// Show previous card
+function showPreviousCard() {
+  cardsEl[currentActiveCard].className = 'card right';
+
+  currentActiveCard = currentActiveCard - 1;
+
+  if (currentActiveCard < 0) {
+    currentActiveCard = 0;
+  }
+
+  cardsEl[currentActiveCard].className = 'card active';
+
+  updateCurrentText();
+}
+
 // Create a single card in DOM
 function createCard(data, index) {
   const card = document.createElement('div');
@@ -77,3 +107,8 @@ function updateCurrentText() {
 }
 
 createCards();
+
+// Event listeners
+
+nextBtn.addEventListener('click', showNextCard);
+prevBtn.addEventListener('click', showPreviousCard);
