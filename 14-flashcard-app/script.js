@@ -49,6 +49,7 @@ function showNextCard() {
 
   cardsEl[currentActiveCard].className = 'card active';
 
+  checkNavButtonsState();
   updateCurrentText();
 }
 
@@ -64,6 +65,7 @@ function showPreviousCard() {
 
   cardsEl[currentActiveCard].className = 'card active';
 
+  checkNavButtonsState();
   updateCurrentText();
 }
 
@@ -106,7 +108,18 @@ function updateCurrentText() {
   currentEl.innerText = `${currentActiveCard + 1}/${cardsEl.length}`;
 }
 
-createCards();
+// Handle enabling/disabling navigation buttons
+function checkNavButtonsState() {
+  prevBtn.disabled = currentActiveCard === 0;
+  nextBtn.disabled = currentActiveCard + 1 > cardsEl.length - 1;
+}
+
+function init() {
+  createCards();
+  checkNavButtonsState();
+}
+
+init();
 
 // Event listeners
 
