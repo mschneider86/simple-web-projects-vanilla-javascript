@@ -17,20 +17,22 @@ let currentActiveCard = 0;
 const cardsEl = [];
 
 // Store card data
-const cardsData = [
-  {
-    question: 'What must a variable begin with?',
-    answer: 'A letter, $ or _',
-  },
-  {
-    question: 'What is a variable?',
-    answer: 'Container for a piece of data',
-  },
-  {
-    question: 'Example of Case Sensitive Variable',
-    answer: 'thisIsAVariable',
-  },
-];
+const cardsData = getCardsData();
+
+// const cardsData = [
+//   {
+//     question: 'What must a variable begin with?',
+//     answer: 'A letter, $ or _',
+//   },
+//   {
+//     question: 'What is a variable?',
+//     answer: 'Container for a piece of data',
+//   },
+//   {
+//     question: 'Example of Case Sensitive Variable',
+//     answer: 'thisIsAVariable',
+//   },
+// ];
 
 // Create all cards
 function createCards() {
@@ -108,12 +110,19 @@ function updateCurrentText() {
   currentEl.innerText = `${currentActiveCard + 1}/${cardsEl.length}`;
 }
 
+// Get cards from local storage
+function getCardsData() {
+  const cards = JSON.parse(localStorage.getItem('cards'));
+  return cards === null ? [] : cards;
+}
+
 // Handle enabling/disabling navigation buttons
 function checkNavButtonsState() {
   prevBtn.disabled = currentActiveCard === 0;
   nextBtn.disabled = currentActiveCard + 1 > cardsEl.length - 1;
 }
 
+// Initialize the app
 function init() {
   createCards();
   checkNavButtonsState();
@@ -123,5 +132,8 @@ init();
 
 // Event listeners
 
+// Next button
 nextBtn.addEventListener('click', showNextCard);
+
+// Previous Button
 prevBtn.addEventListener('click', showPreviousCard);
