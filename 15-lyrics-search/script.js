@@ -15,25 +15,6 @@ async function searchSongs(term) {
 
 // Show song and artist in DOM
 function showData(data) {
-  //let output = '';
-
-  // data.data.forEach((song) => {
-  //   output += `
-  //     <li>
-  //       <span><strong>${song.artist.name}</strong> - ${song.title}</span>
-  //       <button class="btn" data-artist="${song.artist.name}"
-  //     data-songtitle="${song.title}">Get Lyrics</button>
-  //     </li>
-
-  //   `;
-  // });
-
-  // result.innerHTML = `
-  //   <ul class="songs">
-  //   ${output}
-  //   </ul>
-  // `;
-
   result.innerHTML = `
   <ul class="songs">
   ${data.data
@@ -47,6 +28,23 @@ function showData(data) {
     .join('')}
   </ul>
   `;
+
+  if (data.prev || data.next) {
+    more.innerHTML = `
+      ${
+        data.prev
+          ? `<button class="btn" onclick="getMoreSongs('${data.prev}')">Prev</button>`
+          : ''
+      }
+      ${
+        data.next
+          ? `<button class="btn" onclick="getMoreSongs('${data.next}')">Next</button>`
+          : ''
+      }
+    `;
+  } else {
+    more.innerHTML = '';
+  }
 }
 
 function validateSearch(event) {
