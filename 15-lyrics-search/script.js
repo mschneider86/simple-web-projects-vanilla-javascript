@@ -13,6 +13,14 @@ async function searchSongs(term) {
   showData(data);
 }
 
+// Fetch prev and next songs
+async function getMoreSongs(url) {
+  const res = await fetch(url);
+  const data = await res.json();
+
+  showData(data);
+}
+
 // Show song and artist in DOM
 function showData(data) {
   result.innerHTML = `
