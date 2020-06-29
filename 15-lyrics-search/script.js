@@ -21,6 +21,14 @@ async function getMoreSongs(url) {
   showData(data);
 }
 
+// Get lyrics for song
+async function getLyrics(artist, songTitle) {
+  const res = await fetch(`${baseURL}/v1/${artist}/${songTitle}`);
+  const data = await res.json();
+
+  console.log(data.lyrics);
+}
+
 // Show song and artist in DOM
 function showData(data) {
   result.innerHTML = `
@@ -55,6 +63,7 @@ function showData(data) {
   }
 }
 
+// Checks  if there's something to search
 function validateSearch(event) {
   event.preventDefault();
 
@@ -69,3 +78,15 @@ function validateSearch(event) {
 
 // Event listeners
 form.addEventListener('submit', validateSearch);
+
+// Get lyrics button click
+result.addEventListener('click', (e) => {
+  const clickedEl = e.target;
+
+  if (clickedEl.tagName === 'BUTTON') {
+    const artist = clickedEl.getAttribute('data-artist');
+    const songTitle = clickedEl.getAttribute('data-songtitle');
+
+    getLyrics(artist, songTitle);
+  }
+});
