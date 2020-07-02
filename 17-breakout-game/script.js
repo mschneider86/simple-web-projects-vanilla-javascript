@@ -42,8 +42,13 @@ function drawPaddle() {
   ctx.closePath();
 }
 
-drawBall();
-drawPaddle();
+// Draw everything
+function draw() {
+  drawBall();
+  drawPaddle();
+}
+
+draw();
 
 // Event listeners
 rulesBtn.addEventListener('click', () => rules.classList.add('show'));
