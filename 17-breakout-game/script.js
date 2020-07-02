@@ -95,7 +95,14 @@ function draw() {
   drawBricks();
 }
 
-draw();
+// Update canvas drawing and animation
+function update() {
+  draw();
+
+  requestAnimationFrame(update);
+}
+
+update();
 
 // Event listeners
 rulesBtn.addEventListener('click', () => rules.classList.add('show'));
