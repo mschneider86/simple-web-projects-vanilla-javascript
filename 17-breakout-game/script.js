@@ -87,6 +87,20 @@ function drawBricks() {
   });
 }
 
+// Move paddle on canvas
+function movePaddle() {
+  paddle.x += paddle.dx;
+
+  // Wall detection
+  if (paddle.x + paddle.w > canvas.width) {
+    paddle.x = canvas.width - paddle.w;
+  }
+
+  if (paddle.x < 0) {
+    paddle.x = 0;
+  }
+}
+
 // Draw everything
 function draw() {
   drawBall();
@@ -97,6 +111,8 @@ function draw() {
 
 // Update canvas drawing and animation
 function update() {
+  movePaddle();
+
   draw();
 
   requestAnimationFrame(update);
