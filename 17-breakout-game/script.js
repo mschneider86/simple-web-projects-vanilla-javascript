@@ -14,6 +14,16 @@ const ball = {
   dy: -4,
 };
 
+// Create paddle props
+const paddle = {
+  x: canvas.width / 2 - 40,
+  y: canvas.height - 20,
+  w: 80,
+  h: 10,
+  speed: 8,
+  dx: 0,
+};
+
 // Draw ball on canvas
 function drawBall() {
   ctx.beginPath();
@@ -23,7 +33,17 @@ function drawBall() {
   ctx.closePath();
 }
 
+// draw paddle on canvas
+function drawPaddle() {
+  ctx.beginPath();
+  ctx.rect(paddle.x, paddle.y, paddle.w, paddle.h);
+  ctx.fillStyle = '#0095dd';
+  ctx.fill();
+  ctx.closePath();
+}
+
 drawBall();
+drawPaddle();
 
 // Event listeners
 rulesBtn.addEventListener('click', () => rules.classList.add('show'));
