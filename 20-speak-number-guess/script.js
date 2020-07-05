@@ -12,9 +12,12 @@ let recognition = new window.SpeechRecognition();
 // Start recognition and game
 recognition.start();
 
-// capture user speak
+// Capture user speak
 function onSpeak(e) {
-  console.log(e);
+  const msg = e.results[0][0].transcript;
+
+  //writeMessage(msg);
+  //checkNumber(msg);
 }
 
 // Generate random number
