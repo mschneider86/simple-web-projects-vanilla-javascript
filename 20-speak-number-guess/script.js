@@ -7,6 +7,20 @@ console.log('Number:', randomNum);
 window.SpeechRecognition =
   window.SpeechRecognition || window.webkitSpeechRecognition;
 
+let recognition = new window.SpeechRecognition();
+
+// Start recognition and game
+recognition.start();
+
+// capture user speak
+function onSpeak(e) {
+  console.log(e);
+}
+
+// Generate random number
 function getRandomNumber() {
   return Math.floor(Math.random() * 100) + 1;
 }
+
+// Speak result
+recognition.addEventListener('result', onSpeak);
